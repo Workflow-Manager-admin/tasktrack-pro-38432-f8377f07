@@ -16,20 +16,30 @@ class TaskTrackProApp extends StatelessWidget {
     const secondaryColor = Color(0xFF424242);
     const accentColor = Color(0xFFFFC107);
 
-    final colorScheme = ColorScheme.light(
-      primary: primaryColor,
-      secondary: secondaryColor,
-      primaryContainer: primaryColor.withOpacity(0.1),
-      secondaryContainer: secondaryColor.withOpacity(0.1),
-      surface: Colors.white,
-      background: Colors.white,
-      error: Colors.red,
-      onPrimary: Colors.white,
-      onSecondary: Colors.white,
-      onSurface: Colors.black87,
-      onBackground: Colors.black87,
-      onError: Colors.white,
+    final colorScheme = ColorScheme(
       brightness: Brightness.light,
+      primary: primaryColor,
+      onPrimary: Colors.white,
+      secondary: secondaryColor,
+      onSecondary: Colors.white,
+      error: Colors.red,
+      onError: Colors.white,
+      background: Colors.white, // For backwards compatibility - required positional arg.
+      onBackground: Colors.black87, // For backwards compatibility - required positional arg.
+      surface: Colors.white,
+      onSurface: Colors.black87,
+      primaryContainer: const Color(0x1A1976D2), // 0x1A = 10% opacity, replaced withValues.
+      onPrimaryContainer: Colors.black,
+      secondaryContainer: const Color(0x1A424242),
+      onSecondaryContainer: Colors.black,
+      surfaceTint: Colors.white,
+      outline: Colors.black26,
+      outlineVariant: Colors.black12,
+      inverseSurface: Colors.black87,
+      onInverseSurface: Colors.white,
+      inversePrimary: accentColor,
+      shadow: Colors.black54,
+      scrim: Colors.black54,
     );
 
     final theme = ThemeData(
@@ -273,8 +283,8 @@ class _TaskTile extends StatelessWidget {
     required this.due,
     required this.completed,
     required this.onComplete,
-    Key? key,
-  }) : super(key: key);
+    super.key, // Use super parameters as per lint.
+  });
 
   // PUBLIC_INTERFACE
   @override
