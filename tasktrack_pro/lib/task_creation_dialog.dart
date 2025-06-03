@@ -67,11 +67,13 @@ class _TaskCreationDialogState extends State<TaskCreationDialog> {
   // PUBLIC_INTERFACE
   @override
   Widget build(BuildContext context) {
-    final modernInputDecoration = (String label,
-        {String? hint,
-        Widget? suffixIcon,
-        int? maxLines = 1}) =>
-      InputDecoration(
+    InputDecoration modernInputDecoration(
+      String label, {
+      String? hint,
+      Widget? suffixIcon,
+      int? maxLines = 1,
+    }) {
+      return InputDecoration(
         labelText: label,
         hintText: hint,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
@@ -84,10 +86,12 @@ class _TaskCreationDialogState extends State<TaskCreationDialog> {
           borderSide: const BorderSide(color: accentColor, width: 2),
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-        fillColor: primaryColor.withOpacity(0.04),
+        // Use .withAlpha instead of .withOpacity (which is deprecated)
+        fillColor: primaryColor.withAlpha((0.04 * 255).round()),
         filled: true,
         suffixIcon: suffixIcon,
       );
+    }
 
     return Dialog(
       backgroundColor: Colors.white,
