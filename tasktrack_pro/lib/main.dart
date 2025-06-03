@@ -102,12 +102,28 @@ class _MainContainerState extends State<MainContainer> {
     },
   ];
 
-  // Dummy callback for FAB (Task Creation)
-  void _onCreateTask() {
-    // For now, just show a snackbar. Later, replace with the task creation flow.
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Task Creation Triggered')),
+  // PUBLIC_INTERFACE
+  void _onCreateTask() async {
+    // Show the enhanced task creation modal and update state on submission.
+    final result = await showDialog<Map<String, dynamic>>(
+      context: context,
+      builder: (context) => const TaskCreationDialog(),
     );
+
+    if (result != null) {
+      setState(() {
+        tasks.add({
+          'title': result['title'],
+          'description': result['description'],
+          'due': result['due'],
+          'completed': false,
+          'list': 'Personal',
+        });
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Task created successfully!')),
+      );
+    }
   }
 
   // PUBLIC_INTERFACE
