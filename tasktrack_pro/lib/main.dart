@@ -104,12 +104,15 @@ class _MainContainerState extends State<MainContainer> {
   ];
 
   // PUBLIC_INTERFACE
-  void _onCreateTask() async {
+  Future<void> _onCreateTask() async {
     // Show the enhanced task creation modal and update state on submission.
     final result = await showDialog<Map<String, dynamic>>(
       context: context,
       builder: (context) => const TaskCreationDialog(),
     );
+
+    // Check if widget is mounted before using context after async gap
+    if (!mounted) return;
 
     if (result != null) {
       setState(() {
