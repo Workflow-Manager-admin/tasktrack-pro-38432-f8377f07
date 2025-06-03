@@ -24,11 +24,9 @@ class TaskTrackProApp extends StatelessWidget {
       onSecondary: Colors.white,
       error: Colors.red,
       onError: Colors.white,
-      background: Colors.white, // For backwards compatibility - required positional arg.
-      onBackground: Colors.black87, // For backwards compatibility - required positional arg.
       surface: Colors.white,
       onSurface: Colors.black87,
-      primaryContainer: const Color(0x1A1976D2), // 0x1A = 10% opacity, replaced withValues.
+      primaryContainer: const Color(0x1A1976D2), // 0x1A = 10% opacity
       onPrimaryContainer: Colors.black,
       secondaryContainer: const Color(0x1A424242),
       onSecondaryContainer: Colors.black,
@@ -40,6 +38,7 @@ class TaskTrackProApp extends StatelessWidget {
       inversePrimary: accentColor,
       shadow: Colors.black54,
       scrim: Colors.black54,
+      // Removed deprecated background/onBackground
     );
 
     final theme = ThemeData(
@@ -283,7 +282,6 @@ class _TaskTile extends StatelessWidget {
     required this.due,
     required this.completed,
     required this.onComplete,
-    super.key, // Use super parameters as per lint.
   });
 
   // PUBLIC_INTERFACE
