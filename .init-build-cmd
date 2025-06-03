@@ -1,0 +1,4 @@
+{
+    "command": "flutter build apk --release --target-platform android-x64",
+    "working_directory": "/home/kavia/workspace/code-generation/tasktrack-pro-38432-f8377f07/tasktrack_pro"
+}
